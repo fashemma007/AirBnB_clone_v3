@@ -87,15 +87,15 @@ class DBStorage:
         """
         if cls in classes.values() and id and type(id) == str:
             d_obj = self.all(cls)
-            for key, value in d_obj.items():
-                if key.split(".")[1] == id:
-                    return value
+            for k, v in d_obj.items():
+                if k.split(".")[1] == id:
+                    return v
         return None
 
     def count(self, cls=None):
         """ A method to count the number of objects in storage
         """
-        data = self.all(cls)
+        info = self.all(cls)
         if cls in classes.values():
-            data = self.all(cls)
-        return len(data)
+            info = self.all(cls)
+        return len(info)
