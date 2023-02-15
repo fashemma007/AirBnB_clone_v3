@@ -77,9 +77,9 @@ def put_state(state_id):
         else:
             request_body = request.get_json()
 
-        for k, value in request_body.items():
+        for k, v in request_body.items():
             if k != 'id' and k != 'created_at' and k != 'updated_at':
-                setattr(state, k, value)
+                setattr(state, k, v)
         storage.save
         return jsonify(state.to_dict()), 200
 

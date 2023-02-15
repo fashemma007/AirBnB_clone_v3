@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""creates app_views which is an instance of  API Blueprint Views Module
+""" creates app_views which is an instance of  API Blueprint Views Module
 """
 from flask import Blueprint
 
