@@ -35,13 +35,15 @@ class FileStorage:
         return self.__objects
 
     def new(self, obj):
-        """sets in __objects the obj with key <obj class name>.id"""
+        """sets in __objects the obj with key <obj class name>.id
+        """
         if obj is not None:
             key = obj.__class__.__name__ + "." + obj.id
             self.__objects[key] = obj
 
     def save(self):
-        """serializes __objects to the JSON file (path: __file_path)"""
+        """serializes __objects to the JSON file (path: __file_path)
+        """
         json_objects = {}
         for key in self.__objects:
             json_objects[key] = self.__objects[key].to_dict()
@@ -49,7 +51,8 @@ class FileStorage:
             json.dump(json_objects, f)
 
     def reload(self):
-        """deserializes the JSON file to __objects"""
+        """deserializes the JSON file to __objects
+        """
         try:
             with open(self.__file_path, 'r') as f:
                 jo = json.load(f)
@@ -59,28 +62,32 @@ class FileStorage:
             pass
 
     def delete(self, obj=None):
-        """delete obj from __objects if it's inside"""
+        """delete obj from __objects if it's inside
+        """
         if obj is not None:
             key = obj.__class__.__name__ + '.' + obj.id
             if key in self.__objects:
                 del self.__objects[key]
 
     def close(self):
-        """call reload() method for deserializing the JSON file to objects"""
+        """call reload() method for deserializing the JSON file to objects
+        """
         self.reload()
 
     def get(self, cls, id):
-        """ A method to retrieve one object """
+        """A method to retrieve one object
+        """
         if cls in classes.values() and id and type(id) == str:
             d_obj = self.all(cls)
-            for key, value in d_obj.items():
-                if key.split(".")[1] == id:
-                    return value
+            for k, v in d_obj.items():
+                if k.split(".")[1] == id:
+                    return v
         return None
 
     def count(self, cls=None):
-        """ A method to count the number of objects in storage"""
-        data = self.all(cls)
+        """A method to count the number of objects in storage
+        """
+        info = self.all(cls)
         if cls in classes.values():
-            data = self.all(cls)
-        return len(data)
+            info = self.all(cls)
+        return len(info)

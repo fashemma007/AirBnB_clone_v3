@@ -2,6 +2,7 @@
 """API setup
 """
 from flask import Flask
+from flask import jsonify
 from models import storage
 from api.v1.views import app_views
 from os import getenv
@@ -16,6 +17,13 @@ def end_session(exception):
     """Calls on storage.close method
     """
     return storage.close()
+
+
+@app.errorhandler(404)
+def notFound(error):
+    """Page not found error handler
+    """
+    return jsonify({"error": "Not Found"}), 404
 
 
 if __name__ == "__main__":
