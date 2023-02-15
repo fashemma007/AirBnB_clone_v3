@@ -1,8 +1,7 @@
 #!/usr/bin/python3
 """API setup
 """
-from flask import Flask
-from flask import jsonify
+from flask import Flask, jsonify, make_response
 from models import storage
 from api.v1.views import app_views
 from os import getenv
@@ -20,10 +19,10 @@ def end_session(exception):
 
 
 @app.errorhandler(404)
-def notFound(error):
+def not_found(error):
     """Page not found error handler
     """
-    return jsonify({"error": "Not Found"}), 404
+    return make_response(jsonify({"error": "Not Found"}), 404)
 
 
 if __name__ == "__main__":
