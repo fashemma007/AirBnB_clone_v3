@@ -14,7 +14,7 @@ from api.v1.views import app_views
 @app_views.route('/states/<string:state_id>/cities',
                  methods=['GET'], strict_slashes=False)
 def get_city(state_id):
-    """retrieve a list of all City objects of a State"""
+    """retrieve a list of all City objects of a States"""
     state = storage.get("State", state_id)
     if state is None:
         abort(404)
