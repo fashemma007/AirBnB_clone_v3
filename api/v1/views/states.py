@@ -37,7 +37,7 @@ def delete_state(state_id):
     """deletes state object
     """
     state = storage.get(State, state_id)
-    print(state)
+    # print(state)
     if state is None:
         abort(404)
     state.delete()
@@ -75,7 +75,7 @@ def put_state(state_id):
     if not request.get_json():
         return make_response(jsonify({'error': 'Not a JSON'}), 400)
     for key, val in request.get_json().items():
-        print(val)
+        # print(val)
         if key not in ['id', 'created_at', 'updated_at']:
             setattr(state, key, val)
     state.save()
