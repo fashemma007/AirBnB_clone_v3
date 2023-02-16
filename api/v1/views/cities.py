@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """
 Creating a new view for city objects that handles all default RESTFul API
-actions:
+actions
 """
 from models import storage
 from models.city import City
