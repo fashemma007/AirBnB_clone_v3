@@ -44,14 +44,19 @@ class DBStorage:
 
     def all(self, cls=None):
         """query on the current database session"""
-        new_dict = {}
-        for clss in classes:
-            if cls is None or cls is classes[clss] or cls is clss:
-                objs = self.__session.query(classes[clss]).all()
-                for obj in objs:
-                    key = obj.__class__.__name__ + '.' + obj.id
-                    new_dict[key] = obj
-        return (new_dict)
+        if not self.__session:
+            self.reload()
+        objects = {}
+        if type(cls) == str:
+            cls = classes.get(cls, None)
+        if cls:
+            for obj in self.__session.query(cls):
+                objects[obj.__class__.__name__ + '.' + obj.id] = obj
+        else:
+            for cls in classes.values():
+                for obj in self.__session.query(cls):
+                    objects[obj.__class__.__name__ + '.' + obj.id] = obj
+        return objects
 
     def new(self, obj):
         """add the object to the current database session
@@ -85,17 +90,16 @@ class DBStorage:
     def get(self, cls, id):
         """ A method to retrieve one object
         """
-        if cls in classes.values() and id and type(id) == str:
-            d_obj = self.all(cls)
-            for k, v in d_obj.items():
-                if k.split(".")[1] == id:
-                    return v
-        return None
+        if cls is not None and type(id) is str and cls in classes.values():
+            result = self.__session.query(cls).filter(cls.id == id).first()
+            return result
+        else:
+            return None
 
     def count(self, cls=None):
         """ A method to count the number of objects in storage
         """
-        info = self.all(cls)
+        info = self.all()
         if cls in classes.values():
             info = self.all(cls)
         return len(info)
