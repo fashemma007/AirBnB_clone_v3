@@ -50,6 +50,7 @@ def create_amenities(amenity_id=None):
         amenity = Amenity(**req)
         storage.new(amenity)
         storage.save()
+        return jsonify(amenity.to_dict()), 201
     else:
         amenity = storage.get(Amenity, amenity_id)
         if not amenity:
@@ -59,5 +60,5 @@ def create_amenities(amenity_id=None):
         for key, val in request.get_json().items():
             if key not in ['id', 'created_at', 'updated_at']:
                 setattr(amenity, key, val)
-    amenity.save()
-    return jsonify(amenity.to_dict())
+        amenity.save()
+        return jsonify(amenity.to_dict())
