@@ -91,7 +91,7 @@ def update_place(place_id):
     try:
         info = request.get_json()
     except Exception:
-        return make_response(jsonify({"error": "Not a JSON"}), 400)
+        abort(400, "Not a JSON")
     for key, value in info.items():
         if key not in ['id', 'user_id', 'city_id', 'created_at', 'updated_at']:
             setattr(place, key, value)
