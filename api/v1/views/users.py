@@ -42,7 +42,7 @@ def post_put(user_id=None):
     """Handles creation and updates of users in storage"""
     print("I'm here")
     if not request.is_json:
-        abort(400, 'Not a JSON')
+        return make_response(jsonify({'error': 'Not a JSON'}), 400)
     else:
         user_info = request.get_json()
     if request.method == "POST":
@@ -53,7 +53,7 @@ def post_put(user_id=None):
         new_user = User(**user_info)
         storage.new(new_user)
         storage.save()
-        return jsonify(new_user.to_dict())
+        return jsonify(new_user.to_dict()), 201
     else:
         user = storage.get(User, user_id)
         if user is None:
