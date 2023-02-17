@@ -13,9 +13,10 @@ from api.v1.views import app_views
 
 @app_views.route('/states/<string:state_id>/cities',
                  methods=['GET'], strict_slashes=False)
-def get_city(state_id):
+def get_cities(state_id):
     """retrieve a list of all City objects of a States"""
-    state = storage.get("State", state_id)
+    state = storage.get(State, state_id)
+    # print(state)
     if state is None:
         abort(404)
     all_cities = []
@@ -50,22 +51,25 @@ def delete_city(city_id):
     return jsonify({}), 200
 
 
-@app_views.route('/cities', methods=['POST'], strict_slashes=False)
-def post_city():
+@app_views.route('/states/<string:state_id>/cities', methods=['POST'], strict_slashes=False)
+def post_city(state_id):
     """creates a new city
     """
+    state = storage.get(State, state_id)
+    if state is None:
+        abort(404)
     if not request.is_json:
         abort(400, 'Not a JSON')
-    else:
-        request_body = request.get_json()
-
+    request_body = request.get_json()
     if 'name' not in request_body:
         abort(400, "Missing name")
-    else:
-        city = City(**request_body)
-        storage.new(city)
-        storage.save()
-        return jsonify(city.to_dict()), 201
+    # print(request_body)
+    # update request body with the state's id before unpacking
+    request_body['state_id'] = state_id
+    city = City(**request_body)
+    storage.new(city)
+    storage.save()
+    return jsonify(city.to_dict()), 201
 
 
 @app_views.route('/cities/<string:city_id>',
