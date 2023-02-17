@@ -22,7 +22,7 @@ def end_session(exception):
 def not_found(error):
     """Page not found error handler
     """
-    return make_response(jsonify({"error": "Not Found"}), 404)
+    return make_response(jsonify({"error": "Not found"}), 404)
 
 
 if __name__ == "__main__":
