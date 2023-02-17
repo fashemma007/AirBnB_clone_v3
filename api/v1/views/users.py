@@ -40,9 +40,11 @@ def delete_user(user_id):
 @app_views.route("users/<user_id>", methods=['PUT'], strict_slashes=False)
 def post_put(user_id=None):
     """Handles creation and updates of users in storage"""
+    print("I'm here")
     if not request.is_json:
-        return make_response(jsonify({'error': 'Not a JSON'}), 400)
-    user_info = request.get_json()
+        abort(400, 'Not a JSON')
+    else:
+        user_info = request.get_json()
     if request.method == "POST":
         if 'email' not in user_info:
             return make_response(jsonify({'error': "Missing email"}), 400)
