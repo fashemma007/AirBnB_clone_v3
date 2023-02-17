@@ -39,7 +39,8 @@ def get_place(place_id):
     return jsonify(place.to_dict())
 
 
-@app_views.delete('/places/<place_id>', strict_slashes=False)
+@app_views.route('/places/<place_id>',
+                 methods=['DELETE'], strict_slashes=False)
 def delete_place(place_id):
     """Deletes a place object from storage
     ::param place_id -> id of the place to return
@@ -78,7 +79,7 @@ def create_place(city_id):
     return make_response(jsonify(new_place.to_dict())), 201
 
 
-@app_views.put('places/<place_id>', strict_slashes=False)
+@app_views.route('places/<place_id>', methods=['PUT'], strict_slashes=False)
 def update_place(place_id):
     """updates the info of a place object
     ::param place_id -> id of the place object to update
