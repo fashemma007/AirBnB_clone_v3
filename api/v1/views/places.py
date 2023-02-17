@@ -12,6 +12,7 @@ from models.place import Place
 def city_places(city_id):
     """Retrieves all places available for a given city
     ::param city_id(str) : the id of the city
+    Returns: json response `200`
     """
     city = storage.get(City, city_id)
     if city is None:
@@ -23,3 +24,15 @@ def city_places(city_id):
                    if plc.get('city_id') == city_id
                    ]
     return jsonify(city_places), 200
+
+
+@app_views.route('/places/<place_id>', strict_slashes=False)
+def get_place(place_id):
+    """retrieves a place object
+    ::param place_id -> id of the place to return
+    Returns: json response `200`
+    """
+    place = storage.get(Place, place_id)
+    if place is None:
+        abort(404)
+    return jsonify(place.to_dict())
