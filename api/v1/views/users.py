@@ -54,3 +54,14 @@ def post_put(user_id=None):
         storage.new(new_user)
         storage.save()
         return jsonify(new_user.to_dict())
+    else:
+        user = storage.get(User, user_id)
+        if user is None:
+            abort(404)
+        user_info = request.get_json()
+        for key, val in user_info.items():
+            # print(city)
+            if key not in ['id', 'created_at', 'updated_at']:
+                setattr(user, key, val)
+        user.save()
+    return jsonify(user.to_dict())
