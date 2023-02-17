@@ -3,7 +3,8 @@
 from flask import abort, jsonify, make_response, request
 from api.v1.views import app_views
 from models import storage
-from models.user import User
+from models.review import Review
+from models.place import Place
 
 
 @app_views.route("users", strict_slashes=False)
