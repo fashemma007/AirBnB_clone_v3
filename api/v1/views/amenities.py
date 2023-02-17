@@ -6,8 +6,8 @@ from models import storage
 from models.amenity import Amenity
 
 
-@app_views.get("amenities", strict_slashes=False)
-@app_views.get("amenities/<amenity_id>", strict_slashes=False)
+@app_views.route("amenities", method="GET", strict_slashes=False)
+@app_views.route("amenities/<amenity_id>", method="GET", strict_slashes=False)
 def get_amenities(amenity_id=None):
     """retrieves list of all amenities
     """
@@ -23,8 +23,8 @@ def get_amenities(amenity_id=None):
     return jsonify(amenity.to_dict())
 
 
-@app_views.post("amenities", strict_slashes=False)
-@app_views.put("amenities/<amenity_id>", strict_slashes=False)
+@app_views.route("amenities", method="POST", strict_slashes=False)
+@app_views.route("amenities/<amenity_id>", method="PUT", strict_slashes=False)
 def create_amenities(amenity_id=None):
     """creates and updates amenities
     """
