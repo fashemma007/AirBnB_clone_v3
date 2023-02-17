@@ -40,7 +40,6 @@ def delete_user(user_id):
 @app_views.route("users/<user_id>", methods=['PUT'], strict_slashes=False)
 def post_put(user_id=None):
     """Handles creation and updates of users in storage"""
-    print("I'm here")
     if not request.is_json:
         return make_response(jsonify({'error': 'Not a JSON'}), 400)
     else:
