@@ -15,8 +15,6 @@ def get_users(user_id=None):
         users = storage.all(User)
         values = [val for val in users.values()]
         user_list = [user.to_dict() for user in values]
-        if len(user_list) == 0:
-            abort(404)
         return jsonify(user_list), 200
     else:
         user = storage.get(User, user_id)
