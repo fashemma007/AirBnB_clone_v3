@@ -88,9 +88,12 @@ def update_place(place_id):
     place = storage.get(Place, place_id)
     if place is None:
         abort(404)
-    try:
-        info = request.get_json()
-    except Exception:
+    if request.is_json:
+        try:
+            info = request.get_json()
+        except Exception as e:
+            return make_response(jsonify({"error": "Not a JSON"}), 400)
+    else:
         abort(400, "Not a JSON")
     for key, value in info.items():
         if key not in ['id', 'user_id', 'city_id', 'created_at', 'updated_at']:
