@@ -36,3 +36,17 @@ def get_place(place_id):
     if place is None:
         abort(404)
     return jsonify(place.to_dict())
+
+
+@app_views.delete('/places/<place_id>', strict_slashes=False)
+def delete_place(place_id):
+    """Deletes a place object from storage
+    ::param place_id -> id of the place to return
+    Returns: empty json response `200`
+    """
+    place = storage.get(Place, place_id)
+    if place is None:
+        abort(404)
+    storage.delete(place)
+    storage.save()
+    return jsonify({}), 200
