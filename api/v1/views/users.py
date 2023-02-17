@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """view for User object that handles all default RESTFul API actions"""
-from flask import abort, jsonify, make_response
+from flask import abort, jsonify, make_response, request
 from api.v1.views import app_views
 from models import storage
 from models.user import User
@@ -36,7 +36,21 @@ def delete_user(user_id):
     storage.delete(user)
     storage.save()
     return jsonify({})
-# "Not a JSON"
 
 
-# "Missing email"
+@app_views.route("users/", methods=['POST'], strict_slashes=False)
+@app_views.route("users/<user_id>", methods=['PUT'], strict_slashes=False)
+def post_put(user_id=None):
+    """Handles creation and updates of users in storage"""
+    if not request.is_json:
+        return make_response(jsonify({'error': 'Not a JSON'}), 400)
+    user_info = request.get_json()
+    if request.method == "POST":
+        if 'email' not in user_info:
+            return make_response(jsonify({'error': "Missing email"}), 400)
+        elif 'password' not in user_info:
+            return make_response(jsonify({'error': "Missing password"}), 400)
+        new_user = User(**user_info)
+        storage.new(new_user)
+        storage.save()
+        return jsonify(new_user.to_dict())
