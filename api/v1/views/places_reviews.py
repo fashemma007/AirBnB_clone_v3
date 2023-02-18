@@ -21,9 +21,9 @@ def place_reviews(place_id):
     reviews = storage.all(Review)
     reviews = [review.to_dict() for review in reviews.values()]
     place_reviews = [plc
-                   for plc in reviews
-                   if plc.get('place_id') == place_id
-                   ]
+                     for plc in reviews
+                     if plc.get('place_id') == place_id
+                     ]
     return jsonify(place_reviews), 200
 
 
@@ -70,10 +70,12 @@ def create_review(place_id):
         return make_response(jsonify({"error": "Missing user_id"}), 400)
     elif 'name' not in review:
         return make_response(jsonify({"error": "Missing name"}), 400)
+    elif 'text' not in review:
+        return make_response(jsonify({"error": "Missing text"}), 400)
     user_id = review.get('user_id')
     if storage.get(User, user_id) is None:
         abort(404)
-    review.update(plce_id=place_id)
+    review.update(place_id=place_id)
     new_review = Review(**review)
     new_review.save()
     return make_response(jsonify(new_review.to_dict())), 201
@@ -85,7 +87,7 @@ def update_review(review_id):
     ::param review_id -> id of the review object to update
     Returns: json response of new object `200`
     """
-    review = storage.get(Place, review_id)
+    review = storage.get(Review, review_id)
     if review is None:
         abort(404)
     if request.is_json:
