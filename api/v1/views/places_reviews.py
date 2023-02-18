@@ -43,7 +43,7 @@ def get_review(review_id):
                  methods=['DELETE'], strict_slashes=False)
 def delete_review(review_id):
     """Deletes a review object from storage
-    ::param review_id -> id of the review to return
+    - param review_id -> id of the review to return
     Returns: empty json response `200`
     """
     review = storage.get(Review, review_id)
@@ -58,7 +58,7 @@ def delete_review(review_id):
                  methods=['POST'], strict_slashes=False)
 def create_review(place_id):
     """Creates a review object
-    ::param place_id -> id of the place to create new review in
+    - param place_id -> id of the place to create new review in
     Returns: json response of new object `201`
     """
     if storage.get(Place, place_id) is None:
@@ -68,8 +68,6 @@ def create_review(place_id):
     review = request.get_json()
     if 'user_id' not in review:
         return make_response(jsonify({"error": "Missing user_id"}), 400)
-    elif 'name' not in review:
-        return make_response(jsonify({"error": "Missing name"}), 400)
     elif 'text' not in review:
         return make_response(jsonify({"error": "Missing text"}), 400)
     user_id = review.get('user_id')
@@ -83,8 +81,8 @@ def create_review(place_id):
 
 @app_views.route('reviews/<review_id>', methods=['PUT'], strict_slashes=False)
 def update_review(review_id):
-    """updates the info of a review object
-    ::param review_id -> id of the review object to update
+    """ updates the info of a review object
+    - param review_id -> id of the review object to update
     Returns: json response of new object `200`
     """
     review = storage.get(Review, review_id)
