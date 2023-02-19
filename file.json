@@ -41,7 +41,7 @@
 		"created_at": "2023-02-15T07:44:49.109570",
 		"updated_at": "2023-02-15T07:44:49.109570",
 		"email": "fasogbaemmanuel@gmail.com",
-		"password": "09031380883",
+		"password": "d1ad244bbe1b523a6604b6346fafaf20",
 		"__class__": "User"
 	},
 	"Amenity.6b9fd483-6f73-4568-bc00-f4f5c4556b50": {
@@ -57,5 +57,68 @@
 		"updated_at": "2023-02-17T08:20:08.343170",
 		"name": "Stadium",
 		"__class__": "Amenity"
+	},
+	"User.94fad3f0-d27c-4c77-adee-9c20a079fac6": {
+		"id": "94fad3f0-d27c-4c77-adee-9c20a079fac6",
+		"created_at": "2023-02-19T00:59:28.663641",
+		"updated_at": "2023-02-19T00:59:28.663642",
+		"email": "fasogbaemmanuel@gmail.com",
+		"password": "53f7cfbf511ba1ad9e95da8066057d36",
+		"name": "Emmanuel Fasogba",
+		"__class__": "User"
+	},
+	"User.cebc2b0f-2688-4668-a662-fe103904b485": {
+		"id": "cebc2b0f-2688-4668-a662-fe103904b485",
+		"created_at": "2023-02-19T00:59:46.981673",
+		"updated_at": "2023-02-19T00:59:46.981674",
+		"email": "fasogbaemmanuel@gmail.com",
+		"password": "b07312d89e977ef63ef2244f6946ff2a",
+		"first_name": "Emmanuel Fasogba",
+		"__class__": "User"
+	},
+	"User.707ffe18-ed6d-4470-96ce-693642c59481": {
+		"id": "707ffe18-ed6d-4470-96ce-693642c59481",
+		"created_at": "2023-02-19T01:00:36.313505",
+		"updated_at": "2023-02-19T01:00:36.313506",
+		"email": "fasogbaemmanuel@gmail.com",
+		"password": "5ac5c3635b6c720d836f3637b9e60087",
+		"first_name": "Emmanuel Fasogba",
+		"__class__": "User"
+	},
+	"User.3dd5bba7-4176-4971-9047-521b7568f026": {
+		"id": "3dd5bba7-4176-4971-9047-521b7568f026",
+		"created_at": "2023-02-19T01:01:32.342600",
+		"updated_at": "2023-02-19T01:01:32.342601",
+		"email": "emmanuel@gmail.com",
+		"password": "f9686057b88150229e09f2aa830999ef",
+		"first_name": "Emmanuel",
+		"__class__": "User"
+	},
+	"User.825fa5e3-c89f-4a18-bb71-b7ebef1f1abe": {
+		"id": "825fa5e3-c89f-4a18-bb71-b7ebef1f1abe",
+		"created_at": "2023-02-19T01:03:16.167435",
+		"updated_at": "2023-02-19T01:03:16.167436",
+		"email": "emmanuel@gmail.com",
+		"password": "62f7cf4fef59c9787ef5481815bf69e8",
+		"first_name": "Emma",
+		"__class__": "User"
+	},
+	"User.41e414ae-69ec-442d-950e-ff7526087970": {
+		"id": "41e414ae-69ec-442d-950e-ff7526087970",
+		"created_at": "2023-02-19T01:16:33.187911",
+		"updated_at": "2023-02-19T01:16:33.187911",
+		"email": "mmanuel@gmail.com",
+		"password": "7fefbc781c1842d31b2251b01cd6d403",
+		"first_name": "Emma",
+		"__class__": "User"
+	},
+	"User.a99275a7-1705-4073-bd89-8f0accac5789": {
+		"id": "a99275a7-1705-4073-bd89-8f0accac5789",
+		"created_at": "2023-02-19T01:16:57.022666",
+		"updated_at": "2023-02-19T01:16:57.022666",
+		"email": "smmanuel@gmail.com",
+		"password": "884018f71705adb27692b66a9da7ce01",
+		"first_name": "Emma",
+		"__class__": "User"
 	}
 }
