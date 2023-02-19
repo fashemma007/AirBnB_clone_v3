@@ -72,7 +72,7 @@ class BaseModel:
         if "password" in new_dict:
             pwrd = new_dict["password"]
             new_dict["password"] = md5(
-                pwrd.lower().encode('utf-8')).hexdigest()
+                pwrd.encode('utf-8')).hexdigest()
         return new_dict
 
     def delete(self):

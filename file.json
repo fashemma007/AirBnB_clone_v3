@@ -40,6 +40,8 @@
 		"id": "111ef3b0-1ea2-4ae9-9363-c672b72d04ec",
 		"created_at": "2023-02-15T07:44:49.109570",
 		"updated_at": "2023-02-15T07:44:49.109570",
+		"email": "fasogbaemmanuel@gmail.com",
+		"password": "09031380883",
 		"__class__": "User"
 	},
 	"Amenity.6b9fd483-6f73-4568-bc00-f4f5c4556b50": {
